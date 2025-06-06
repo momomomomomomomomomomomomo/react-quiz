@@ -14,23 +14,8 @@ import Timer from "./Timer.js";
 import { useQuiz } from "../contexts/QuizContext.jsx";
 
 export default function App() {
-  const { data, dispatch, status } = useQuiz();
+  const { status } = useQuiz();
 
-  useEffect(
-    function () {
-      async function loadData() {
-        try {
-          const res = await fetch("http://localhost:9000/questions");
-          const data = await res.json();
-          dispatch({ type: "dataReceived", payload: data });
-        } catch (err) {
-          dispatch({ type: "dataFailed" });
-        }
-      }
-      loadData();
-    },
-    [dispatch]
-  );
   return (
     <div className="app">
       <Header />
